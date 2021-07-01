@@ -12,7 +12,7 @@
     "custom.controlMotor|block":"设置 %emotor 方向 %edir 速度 %spee",
     "custom.controlLED|block":"控制 %eled %eSwitch",
     "custom.readLineSensorState|block":"读取巡线传感器 %eline 状态",
-    "custom.readLineSensorData|block":"读取巡线传感器 %eline 数据",
+    "custom.readLineSensorData|block":"读取巡线传感器 %eline ADC数据",
     "custom.readUltrasonic|block": "设置超声波 TRIG脚 %trig ECHO脚 %echo 获取数据 单位：CM",
     "custom.readVersion|block": "读取版本号",
     "custom|block":"麦昆+ V2.0"

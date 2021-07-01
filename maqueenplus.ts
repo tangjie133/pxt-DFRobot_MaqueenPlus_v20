@@ -176,7 +176,7 @@ namespace custom {
      * @param eline 选择巡线传感器枚举
      * @return 返回选择巡线传感器AD值
      */
-    //% block="read line sensor %eline data"
+    //% block="read line sensor %eline  ADC data"
     //% weight=95
     export function readLineSensorData(eline:MyEnumLineSensor):number{
         let data;
