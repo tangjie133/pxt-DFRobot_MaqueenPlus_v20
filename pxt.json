@@ -11,6 +11,7 @@
         "main.blocks",
         "main.ts",
         "README.md",
+        "_locales/zh-cn/DFRobot_MaqueenPlus_V2.0-strings.json",
         "maqueenplus.ts"
     ],
     "testFiles": [
