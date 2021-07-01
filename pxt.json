@@ -9,7 +9,8 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "maqueenplus.ts"
     ],
     "testFiles": [
         "test.ts"
