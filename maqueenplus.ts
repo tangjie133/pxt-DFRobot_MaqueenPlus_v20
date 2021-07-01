@@ -66,7 +66,7 @@ const VERSION_DATA_REGISTER = 0X33;
 /**
  * 自定义图形块
  */
-//% weight=100 color=#0fbc11 icon="" block="Maqueen Plus V2.0"
+//% weight=100 color=#0fbc11 icon="\uf067" block="Maqueen Plus V2.0"
 namespace custom {
     
 
@@ -172,7 +172,7 @@ namespace custom {
     }
     
     /**
-     * TODO: 获取巡线传感器AD数据
+     * TODO: 获取巡线传感器ADC数据
      * @param eline 选择巡线传感器枚举
      * @return 返回选择巡线传感器AD值
      */
@@ -216,7 +216,7 @@ namespace custom {
      * @param echo echo引脚选择枚举 eg:DigitalPin.P15
      * @return 返回超声波获取的数据
      */
-    //% block="read ultrasonic sensor TRIG %trig ECHO %echo company:cm"
+    //% block="set ultrasonic sensor TRIG pin %trig ECHO pin %echo read data company:cm"
     //% weight=94
     export function readUltrasonic(trig:DigitalPin, echo:DigitalPin):number{
         let data;
