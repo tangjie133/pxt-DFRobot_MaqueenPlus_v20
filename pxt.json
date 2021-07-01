@@ -1,5 +1,5 @@
 {
-    "name": "pxt-DFRobot_MaqueenPlus_V2.0",
+    "name": "DFRobot_MaqueenPlus_V2.0",
     "version": "0.0.2",
     "description": "",
     "dependencies": {
@@ -19,5 +19,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
