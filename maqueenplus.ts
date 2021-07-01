@@ -7,7 +7,7 @@ enum MyEnumMotor{
     eRightMotor,
     //% block="all motor"
     eAllMotor,
-}
+};
 
 //电机方向枚举选择
 enum MyEnumDir{
@@ -15,7 +15,7 @@ enum MyEnumDir{
     eForward,
     //% block="backward"
     eBackward,
-}
+};
 
 //LED灯选择枚举
 enum MyEnumLed{
@@ -25,7 +25,7 @@ enum MyEnumLed{
     eRightLed,
     //% block="all led light"
     eAllLed,
-}
+};
 
 //LED灯开关枚举选择
 enum MyEnumSwitch{
@@ -33,7 +33,7 @@ enum MyEnumSwitch{
     eClose,
     //% block="open"
     eOpen,
-}
+};
 
 //巡线传感器选择
 enum MyEnumLineSensor{
@@ -47,7 +47,7 @@ enum MyEnumLineSensor{
     eL2,
     //% block="R2"
     eR2,
-}
+};
 
 const I2CADDR = 0x10;
 const ADC0_REGISTER = 0X1E;
@@ -210,6 +210,33 @@ namespace custom {
         }
         return data;
     }
+    /**
+     * DOTO:获取超声波数据
+     * @param trig trig引脚选择枚举 eg:DigitalPin.P14
+     * @param echo echo引脚选择枚举 eg:DigitalPin.P15
+     * @return 返回超声波获取的数据
+     */
+    //% block="read ultrasonic sensor TRIG %trig ECHO %echo company:cm"
+    //% weight=94
+    export function readUltrasonic(trig:DigitalPin, echo:DigitalPin):number{
+        let data;
+        pins.digitalWritePin(trig, 1);
+        basic.pause(1);
+        pins.digitalWritePin(trig, 0)
+        if(pins.digitalReadPin(echo) == 0){
+            pins.digitalWritePin(trig, 1);
+            pins.digitalWritePin(trig, 0);
+            data = pins.pulseIn(echo, PulseValue.High,500*58);
+        }else{
+            pins.digitalWritePin(trig, 0);
+            pins.digitalWritePin(trig, 1);
+            data = pins.pulseIn(echo, PulseValue.High,500*58)
+        }
+        data = data/39;
+        if(data <= 0 || data > 500)
+            return 0;
+        return Math.round(data);
+    }
 
     /**
      * DOTO: 获取版本号
@@ -217,7 +244,7 @@ namespace custom {
      * @return 返回版本号
      */
     //% block="read version"
-    //% weight=94
+    //% weight=93
     export function readVersion():string{
         let version;
         pins.i2cWriteNumber(I2CADDR, VERSION_CNT_REGISTER, NumberFormat.Int8LE);
