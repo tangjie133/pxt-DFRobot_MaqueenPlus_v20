@@ -79,7 +79,7 @@ namespace custom {
      */
     //% block="set %emotor direction %edir speed %speed"
     //% speed.min=0 speed.max=255
-    //% weight=98
+    //% weight=99
     export function controlMotor(emotor:MyEnumMotor, edir:MyEnumDir, speed:number):void{
         switch(emotor){
             case MyEnumMotor.eLeftMotor:
@@ -105,6 +105,35 @@ namespace custom {
                 allBuffer[4] = speed;
                 pins.i2cWriteBuffer(I2CADDR, allBuffer)
             break;   
+        }
+    }
+    //% block="set %emotor stop"
+    //% weight=98
+    export function controlMotorStop(emotor:MyEnumMotor):void{
+        switch (emotor) {
+            case MyEnumMotor.eLeftMotor:
+                let leftBuffer = pins.createBuffer(3);
+                leftBuffer[0] = LEFT_MOTOR_REGISTER;
+                leftBuffer[1] = 0;
+                leftBuffer[2] = 0;
+                pins.i2cWriteBuffer(I2CADDR, leftBuffer);
+                break;
+            case MyEnumMotor.eRightMotor:
+                let rightBuffer = pins.createBuffer(3);
+                rightBuffer[0] = RIGHT_MOTOR_REGISTER;
+                rightBuffer[1] = 0;
+                rightBuffer[2] = 0;
+                pins.i2cWriteBuffer(I2CADDR, rightBuffer);
+                break;
+            default:
+                let allBuffer = pins.createBuffer(5);
+                allBuffer[0] = LEFT_MOTOR_REGISTER;
+                allBuffer[1] = 0;
+                allBuffer[2] = 0;
+                allBuffer[3] = 0;
+                allBuffer[4] = 0;
+                pins.i2cWriteBuffer(I2CADDR, allBuffer)
+                break;
         }
     }
 

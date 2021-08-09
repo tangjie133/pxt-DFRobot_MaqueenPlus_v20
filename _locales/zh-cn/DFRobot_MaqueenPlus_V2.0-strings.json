@@ -15,5 +15,6 @@
     "custom.readLineSensorData|block":"读取巡线传感器 %eline ADC数据",
     "custom.readUltrasonic|block": "设置超声波 TRIG脚 %trig ECHO脚 %echo 获取数据 单位：CM",
     "custom.readVersion|block": "读取版本号",
+    "custom.controlMotorStop|block":"设置 %emotor 停止",
     "custom|block":"麦昆+ V2.0"
 }
