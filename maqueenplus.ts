@@ -252,8 +252,8 @@ namespace DFRobotMaqueenPlusV2 {
     }
     /**
      * DOTO:获取超声波数据
-     * @param trig trig引脚选择枚举 eg:DigitalPin.P14
-     * @param echo echo引脚选择枚举 eg:DigitalPin.P15
+     * @param trig trig引脚选择枚举 eg:DigitalPin.P13
+     * @param echo echo引脚选择枚举 eg:DigitalPin.P14
      * @return 返回超声波获取的数据
      */
     //% block="set ultrasonic sensor TRIG pin %trig ECHO pin %echo read data company:cm"
