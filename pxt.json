@@ -11,15 +11,15 @@
         "main.blocks",
         "main.ts",
         "README.md",
+        "_locales/zh-cn/DFRobot_MaqueenPlus_V2.0-strings.json",
+        "maqueenplus.ts",
         "enums.d.ts",
         "maqueenIR.cpp",
         "ReceiverIR.cpp",
         "NecIR.cpp",
         "ReceiverIR.h",
         "RemoteIR.h",
-        "shims.d.ts",
-        "_locales/zh-cn/DFRobot_MaqueenPlus_V2.0-strings.json",
-        "maqueenplus.ts"
+        "shims.d.ts"
     ],
     "testFiles": [
         "test.ts"

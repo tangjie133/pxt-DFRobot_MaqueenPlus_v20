@@ -67,9 +67,20 @@ const VERSION_DATA_REGISTER = 0X33;
  * 自定义图形块
  */
 //% weight=100 color=#0fbc11 icon="\uf067" block="Maqueen Plus V2.0"
-namespace custom {
+namespace DFRobotMaqueenPlusV2 {
     
-
+    let irstate: number;
+    let state: number;
+    let maqueencb: Action
+    let maqueenmycb: Action
+    let maqueene = "1"
+    let maqueenparam = 0
+    let alreadyInit = 0
+    let IrPressEvent = 0
+    export class Packeta {
+        public mye: string;
+        public myparam: number;
+    }
     /**
      * TODO: 电机控制模块
      * @param emotor 电机选择枚举
@@ -282,5 +293,126 @@ namespace custom {
          version= pins.i2cReadBuffer(I2CADDR, version);
         let versionString = version.toString();
         return versionString
+    }
+    /**
+    * Read IR sensor value V2.
+    */
+
+    //% advanced=true shim=maqueenIRV2::irCode
+    function irCode(): number {
+        return 0;
+    }
+
+    //% weight=5
+    //% group="micro:bit(v2)"
+    //% block="read IR key value"
+    export function IR_readV2(): number {
+        return valuotokeyConversion();
+    }
+
+    //% weight=2
+    //% group="micro:bit(v2)"
+    //% block="on IR received"
+    //% draggableParameters
+    export function IR_callbackUserV2(cb: (message: number) => void) {
+        state = 1;
+        control.onEvent(11, 22, function () {
+            cb(irstate)
+        })
+    }
+    function valuotokeyConversion(): number {
+        let irdata: number;
+        switch (irCode()) {
+            case 0xff00: irdata = 0; break;
+            case 0xfe01: irdata = 1; break;
+            case 0xfd02: irdata = 2; break;
+            case 0xfb04: irdata = 4; break;
+            case 0xfa05: irdata = 5; break;
+            case 0xf906: irdata = 6; break;
+            case 0xf708: irdata = 8; break;
+            case 0xf609: irdata = 9; break;
+            case 0xf50a: irdata = 10; break;
+            case 0xf30c: irdata = 12; break;
+            case 0xf20d: irdata = 13; break;
+            case 0xf10e: irdata = 14; break;
+            case 0xef10: irdata = 16; break;
+            case 0xee11: irdata = 17; break;
+            case 0xed12: irdata = 18; break;
+            case 0xeb14: irdata = 20; break;
+            case 0xea15: irdata = 21; break;
+            case 0xe916: irdata = 22; break;
+            case 0xe718: irdata = 24; break;
+            case 0xe619: irdata = 25; break;
+            case 0xe51a: irdata = 20; break;
+            default:
+                irdata = -1;
+        }
+        return irdata;
+    }
+
+    basic.forever(() => {
+        if (state == 1) {
+            irstate = valuotokeyConversion();
+            if (irstate != -1) {
+                control.raiseEvent(11, 22)
+            }
+        }
+
+        basic.pause(50);
+    })
+    /**
+     *  infra-red sensor
+     */
+    //% advanced=true shim=maqueenIR::initIR
+    function initIR(pin: Pins): void {
+        return
+    }
+    //% advanced=true shim=maqueenIR::onPressEvent
+    function onPressEvent(btn: RemoteButton, body: Action): void {
+        return
+    }
+    //% advanced=true shim=maqueenIR::getParam
+    function getParam(): number {
+        return 0
+    }
+
+    function maqueenInit(): void {
+        if (alreadyInit == 1) {
+            return
+        }
+        initIR(Pins.P16);
+        alreadyInit = 1;
+    }
+    /**
+     * Run when received IR signal
+     */
+    //% weight=10
+    //%  block="on IR received"
+    //% draggableParameters
+    export function IR_callbackUser(maqueencb: (message: number) => void) {
+        maqueenInit();
+        IR_callback(() => {
+            const packet = new Packeta();
+            packet.mye = maqueene;
+            maqueenparam = getParam();
+            packet.myparam = maqueenparam;
+            maqueencb(packet.myparam);
+        });
+    }
+
+    /**
+     * Read the IR information 
+     */
+    //% weight=15
+    //%  block="read IR key value"
+    export function IR_read(): number {
+        maqueenInit();
+        return getParam();
+    }
+
+    function IR_callback(a: Action): void {
+        maqueencb = a;
+        IrPressEvent += 1;
+        onPressEvent(IrPressEvent, maqueencb);
     }
 }
