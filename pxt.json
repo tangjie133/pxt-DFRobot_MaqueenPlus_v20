@@ -1,6 +1,6 @@
 {
     "name": "DFRobot_MaqueenPlus_V2.0",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "",
     "dependencies": {
         "core": "*",
