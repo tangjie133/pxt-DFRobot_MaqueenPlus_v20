@@ -1,6 +1,41 @@
 
 #include "pxt.h"
 
+
+#include "MicroBit.h"
+
+#ifndef MICROBIT_CODAL
+#ifdef CODAL_CONFIG_H
+#define MICROBIT_CODAL 1
+#else
+#define MICROBIT_CODAL 0
+#endif
+#endif
+
+
+#if MICROBIT_CODAL
+
+#else // MICROBIT_CODAL
+
+class PullMode
+{
+public:
+    PinMode pm;
+
+    PullMode()            : pm( PullNone) {};
+    PullMode( uint8_t p)  : pm( (PinMode)p) {};
+    PullMode( PinMode p)  : pm( p) {};
+
+    static const PinMode None = PullNone;
+    static const PinMode Down = PullDown;
+    static const PinMode Up   = PullUp;
+
+    operator PinMode() { return pm; }
+    operator uint8_t() { return pm; }
+};
+
+#endif // MICROBIT_CODAL
+
 //% color=50 weight=80
 //% icon="\uf1eb"
 namespace maqueenIRV2 { 
@@ -18,11 +53,11 @@ int logic_value(){//判断逻辑值"0"和"1"子函数
         lasttime = system_timer_current_time_us();
         if((lasttime - nowtime)>400 && (lasttime - nowtime) < 700){//接着高电平560us
             return 0;
-        }else if((lasttime - nowtime)>1500 && (lasttime - nowtime) < 1800){//接着高电平1.7ms
+        }else if((lasttime - nowtime)>1400 && (lasttime - nowtime) < 1800){//接着高电平1.7ms
             return 1;
        }
     }
-uBit.serial.printf("error\r\n");
+//uBit.serial.printf("error\r\n");
     return -1;
 }
 
@@ -53,15 +88,18 @@ void remote_decode(void){
     uint32_t lasttime = system_timer_current_time_us();
     uint32_t nowtime;
     while(uBit.io.P16.getDigitalValue()){//高电平等待
+    //uBit.serial.printf("1\r\n");
         nowtime = system_timer_current_time_us();
         if((nowtime - lasttime) > 100000){//超过100 ms,表明此时没有按键按下
             ir_code = 0xff00;
             return;
         }
     }
+    //uBit.serial.printf("2\r\n");
     //如果高电平持续时间不超过100ms
     lasttime = system_timer_current_time_us();
     while(!uBit.io.P16.getDigitalValue());//低等待
+    //uBit.serial.printf("3\r\n");
     nowtime = system_timer_current_time_us();
     if((nowtime - lasttime) < 10000 && (nowtime - lasttime) > 8000){//9ms
         while(uBit.io.P16.getDigitalValue());//高等待
@@ -71,10 +109,10 @@ void remote_decode(void){
             //uBit.serial.printf("addr=0x%X,code = 0x%X\r\n",ir_addr,ir_code);
             data = ir_code;
             return;//ir_code;
-        }else if((lasttime - nowtime) > 2000 && (lasttime - nowtime) < 2500){//2.25ms,表示发的跟上一个包一致
+        }else if((lasttime - nowtime) > 1750 && (lasttime - nowtime) < 2750){//2.25ms,表示发的跟上一个包一致
             while(!uBit.io.P16.getDigitalValue());//低等待
             nowtime = system_timer_current_time_us();
-            if((nowtime - lasttime) > 500 && (nowtime - lasttime) < 700){//560us
+            if((nowtime - lasttime) > 400 && (nowtime - lasttime) < 700){//560us
                 //uBit.serial.printf("addr=0x%X,code = 0x%X\r\n",ir_addr,ir_code);
                 data = ir_code;
                 return;//ir_code;
@@ -85,6 +123,8 @@ void remote_decode(void){
 
  //% 
 int irCode(){
+    PullMode pullmode = PullMode::Up;
+    uBit.io.P16.setPull(pullmode);
     remote_decode();
     return data;
 }

@@ -66,7 +66,7 @@ const VERSION_DATA_REGISTER = 0X33;
 /**
  * 自定义图形块
  */
-//% weight=100 color=#0fbc11 icon="\uf067" block="Maqueen Plus V2.0"
+//% weight=100 color=#0fbc11 icon="\uf067" block="Maqueen Plus V2"
 namespace DFRobotMaqueenPlusV2 {
     
     let irstate: number;
@@ -363,6 +363,7 @@ namespace DFRobotMaqueenPlusV2 {
     /**
      *  infra-red sensor
      */
+    /*
     //% advanced=true shim=maqueenIR::initIR
     function initIR(pin: Pins): void {
         return
@@ -382,10 +383,11 @@ namespace DFRobotMaqueenPlusV2 {
         }
         initIR(Pins.P16);
         alreadyInit = 1;
-    }
+    }*/
     /**
      * Run when received IR signal
      */
+    /*
     //% weight=10
     //%  block="on IR received"
     //% draggableParameters
@@ -398,13 +400,15 @@ namespace DFRobotMaqueenPlusV2 {
             packet.myparam = maqueenparam;
             maqueencb(packet.myparam);
         });
-    }
+    }*/
 
     /**
      * Read the IR information 
      */
+    /*
     //% weight=15
     //%  block="read IR key value"
+    
     export function IR_read(): number {
         maqueenInit();
         return getParam();
@@ -414,5 +418,5 @@ namespace DFRobotMaqueenPlusV2 {
         maqueencb = a;
         IrPressEvent += 1;
         onPressEvent(IrPressEvent, maqueencb);
-    }
+    }*/
 }

@@ -16,9 +16,9 @@
     "DFRobotMaqueenPlusV2.readUltrasonic|block": "设置超声波 TRIG脚 %trig ECHO脚 %echo 获取数据 单位：CM",
     "DFRobotMaqueenPlusV2.readVersion|block": "读取版本号",
     "DFRobotMaqueenPlusV2.controlMotorStop|block":"设置 %emotor 停止",
-    "DFRobotMaqueenPlusV2|block":"麦昆+ V2.0",
-    "DFRobotMaqueenPlusV2.IR_read|block": "读红外线数值",
+    "DFRobotMaqueenPlusV2|block":"麦昆Plus V2",
+    "DFRobotMaqueenPlusV2.IR_read|block": "读红外线键值",
     "DFRobotMaqueenPlusV2.IR_callbackUser|block": "当红外接收到",
     "DFRobotMaqueenPlusV2.IR_callbackUserV2|block": "当红外接收到",
-    "DFRobotMaqueenPlusV2.IR_readV2|block": "读红外值"
+    "DFRobotMaqueenPlusV2.IR_readV2|block": "读红外线键值"
 }
