@@ -304,14 +304,14 @@ namespace DFRobotMaqueenPlusV2 {
     }
 
     //% weight=5
-    //% group="micro:bit(v2)"
+    // group="micro:bit(v2)"
     //% block="read IR key value"
     export function IR_readV2(): number {
         return valuotokeyConversion();
     }
 
     //% weight=2
-    //% group="micro:bit(v2)"
+    // group="micro:bit(v2)"
     //% block="on IR received"
     //% draggableParameters
     export function IR_callbackUserV2(cb: (message: number) => void) {
