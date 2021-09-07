@@ -20,5 +20,12 @@
     "DFRobotMaqueenPlusV2.IR_read|block": "读红外线键值",
     "DFRobotMaqueenPlusV2.IR_callbackUser|block": "当红外接收到",
     "DFRobotMaqueenPlusV2.IR_callbackUserV2|block": "当红外接收到",
-    "DFRobotMaqueenPlusV2.IR_readV2|block": "读红外线键值"
+    "DFRobotMaqueenPlusV2.IR_readV2|block": "读红外线键值",
+    "DFRobotMaqueenPlusV2.setBrightness|block": "设置RGB亮度为|%brightness",
+    "DFRobotMaqueenPlusV2.showColor|block": "RGB显示颜色|%rgb",
+    "DFRobotMaqueenPlusV2.setIndexColor|block": "RGB 灯|%index 显示颜色|%rgb",
+    "DFRobotMaqueenPlusV2.ledRange|block": "RGB范围从|%from 到|%to",
+    "DFRobotMaqueenPlusV2.rgb|block": "红|%r绿|%g蓝|%b",
+    "DFRobotMaqueenPlusV2.ledRainbow|block": "设置RGB显示彩虹色从|%startHue 到|%endHue",
+    "DFRobotMaqueenPlusV2.ledBlank|block": "关闭全部RGB"
 }
