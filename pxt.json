@@ -14,6 +14,8 @@
         "_locales/zh-cn/DFRobot_MaqueenPlus_V2.0-strings.json",
         "maqueenplus.ts",
         "enums.d.ts",
+        "ws2812b.ts",
+        "sendBuffer.asm",
         "NecIR.cpp",
         "shims.d.ts"
     ],
