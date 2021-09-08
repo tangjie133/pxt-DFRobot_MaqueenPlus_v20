@@ -336,7 +336,7 @@ namespace DFRobotMaqueenPlusV2 {
             case 0xe916: irdata = 22; break;
             case 0xe718: irdata = 24; break;
             case 0xe619: irdata = 25; break;
-            case 0xe51a: irdata = 20; break;
+            case 0xe51a: irdata = 26; break;
             default:
                 irdata = -1;
         }
