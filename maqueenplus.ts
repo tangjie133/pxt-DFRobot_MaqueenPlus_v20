@@ -377,11 +377,11 @@ namespace DFRobotMaqueenPlusV2 {
      */
 
     //% weight=60
-    //% from.min=1 from.max=4
+    //% from.min=0 from.max=3
     //% to.min=1 to.max=4
     //% block="range from |%from with|%to leds"
     export function ledRange(from: number, to: number): number {
-        return ((from - 1) << 16) + (2 << 8) + (to);
+        return ((from) << 16) + (2 << 8) + (to);
     }
 
     /**
@@ -390,20 +390,20 @@ namespace DFRobotMaqueenPlusV2 {
      */
 
     //% weight=60
-    //% index.min=1 index.max=4
+    //% index.min=0 index.max=3
     //% rgb.shadow="colorNumberPicker"
     //% block="RGB light |%index show color|%rgb"
     export function setIndexColor(index: number, rgb: number) {
-        let f = index - 1;
-        let t = index - 1;
+        let f = index;
+        let t = index;
         let r = (rgb >> 16) * (_brightness / 255);
         let g = ((rgb >> 8) & 0xFF) * (_brightness / 255);
         let b = ((rgb) & 0xFF) * (_brightness / 255);
 
-        if ((index - 1) > 15) {
-            if ((((index - 1) >> 8) & 0xFF) == 0x02) {
-                f = (index - 1) >> 16;
-                t = (index - 1) & 0xff;
+        if (index > 15) {
+            if (((index >> 8) & 0xFF) == 0x02) {
+                f = index  >> 16;
+                t = index  & 0xff;
             } else {
                 f = 0;
                 t = -1;
