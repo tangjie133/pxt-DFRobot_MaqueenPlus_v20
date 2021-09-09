@@ -1,1 +1,1 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="$C3};XIiqFV(gAQm!/5^">message</variable></variables><block type="DFRobotMaqueenPlusV2_irButton" id="h0JA@xvUE2G1VLYJrMtr" disabled="true" x="751" y="336"/><block type="variables_get" id="$1LFxqP!aaPrzQ#K(ZLJ" disabled="true" x="385" y="386"><field name="VAR" id="$C3};XIiqFV(gAQm!/5^">message</field></block></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="$C3};XIiqFV(gAQm!/5^">message</variable></variables></xml>
