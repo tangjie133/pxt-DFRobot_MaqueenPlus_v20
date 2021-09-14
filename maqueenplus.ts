@@ -738,7 +738,7 @@ namespace DFRobotMaqueenPlusV2 {
         basic.pause(0); // Yield to support background processing when called in tight loops
         if (!irState) {
             return -1;
-        }
+        } 
         return valuotokeyConversion();
     }
     //% block="init maqueen plus V2"
@@ -762,13 +762,14 @@ namespace DFRobotMaqueenPlusV2 {
 
     function valuotokeyConversion(): number {
         let irdata: number;
+        
         switch (irState.commandSectionBits >> 8) {
             case 0x00: irdata = 0; break;
             case 0x80: irdata = 1; break;
             case 0x40: irdata = 2; break;
             case 0x20: irdata = 4; break;
             case 0xA0: irdata = 5; break;
-            case 0x24: irdata = 6; break;
+            case 0x60: irdata = 6; break;
             case 0x10: irdata = 8; break;
             case 0x90: irdata = 9; break;
             case 0x50: irdata = 10; break;
